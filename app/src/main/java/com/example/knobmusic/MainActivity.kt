@@ -78,36 +78,36 @@ class MainActivity : ComponentActivity() {
             }
     }
 }
-//@SuppressLint("RememberReturnType")
-//@Composable
-//fun VolumeBar(
-//    modifier: Modifier,
-//    activeBars:Int=0,
-//    barCount:Int=10
-//){
-//    BoxWithConstraints(
-//        contentAlignment = Alignment.Center,
-//        modifier = modifier
-//    ) {
-//        val barWidth = remember {
-//            constraints.maxWidth/(2f*barCount)
-//
-//        }
-//        Canvas(modifier = modifier){
-//            for (i in 0 until barCount){
-//                drawRect(
-//                    color = if (i in 0..activeBars) Color.Green else Color.DarkGray,
-//                    topLeft = Offset(i*barWidth+barWidth/2f,0f),
-//                    size= Size(barWidth,constraints.maxHeight.toFloat()),
-//
-//
-//
-//                )
-//            }
-//        }
-//    }
-//
-//}
+@SuppressLint("RememberReturnType")
+@Composable
+fun VolumeBar(
+    modifier: Modifier,
+    activeBars:Int=0,
+    barCount:Int=10
+){
+    BoxWithConstraints(
+        contentAlignment = Alignment.Center,
+        modifier = modifier
+    ) {
+        val barWidth = remember {
+            constraints.maxWidth/(2f*barCount)
+
+        }
+        Canvas(modifier = modifier){
+            for (i in 0 until barCount){
+                drawRect(
+                    color = if (i in 0..activeBars) Color.Green else Color.DarkGray,
+                    topLeft = Offset(i*barWidth+barWidth/2f,0f),
+                    size= Size(barWidth,constraints.maxHeight.toFloat()),
+
+
+
+                )
+            }
+        }
+    }
+
+}
 
 @Composable
 fun MusicKnob(
