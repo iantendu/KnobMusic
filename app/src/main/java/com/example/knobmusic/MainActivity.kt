@@ -109,66 +109,66 @@ class MainActivity : ComponentActivity() {
 //
 //}
 
-//@Composable
-//fun MusicKnob(
-//    modifier: Modifier=Modifier,
-//    limitingAngle:Float=25f,
-//    onValueChanged:(Float)->Unit
-//){
-//    var rotation by remember {
-//        mutableStateOf(limitingAngle)
-//    }
-//    var touchX by remember {
-//        mutableStateOf(0f)
-//    }
-//    var touchY by remember {
-//        mutableStateOf(0f)
-//    }
-//    var centerX by remember {
-//        mutableStateOf(0f)
-//    }
-//    var centerY by remember {
-//        mutableStateOf(0f)
-//    }
-//
-//    Image(
-//        painter = painterResource(id = R.drawable.music_knob) ,
-//        contentDescription ="Music Knob",
-//        modifier= modifier
-//            .fillMaxSize()
-//            .onGloballyPositioned {
-//                val windowBounds = it.boundsInWindow()
-//                centerX = windowBounds.size.width / 2f
-//                centerY = windowBounds.size.height / 2f
-//            }
-//            .pointerInteropFilter { event ->
-//                touchX = event.x
-//                touchY = event.y
-//                val angle = -atan2(centerX - touchX, centerY - touchY) * (180 / PI).toFloat()
-//
-//                when (event.action) {
-//                    MotionEvent.ACTION_DOWN,
-//                    MotionEvent.ACTION_MOVE -> {
-//                        if (angle !in -limitingAngle..limitingAngle) {
-//                            val fixedAngle = if (angle in -180f..-limitingAngle) {
-//                                360f + angle
-//                            } else {
-//                                angle
-//                            }
-//                            rotation = fixedAngle
-//
-//                            val percent = (fixedAngle - limitingAngle) / (360f - 2 * limitingAngle)
-//                            onValueChanged(percent)
-//                            true
-//                        } else false
-//                    }
-//                    else -> false
-//                }
-//
-//            }
-//            .rotate(rotation)
-//
-//    )
-//
-//}
+@Composable
+fun MusicKnob(
+    modifier: Modifier=Modifier,
+    limitingAngle:Float=25f,
+    onValueChanged:(Float)->Unit
+){
+    var rotation by remember {
+        mutableStateOf(limitingAngle)
+    }
+    var touchX by remember {
+        mutableStateOf(0f)
+    }
+    var touchY by remember {
+        mutableStateOf(0f)
+    }
+    var centerX by remember {
+        mutableStateOf(0f)
+    }
+    var centerY by remember {
+        mutableStateOf(0f)
+    }
+
+    Image(
+        painter = painterResource(id = R.drawable.music_knob) ,
+        contentDescription ="Music Knob",
+        modifier= modifier
+            .fillMaxSize()
+            .onGloballyPositioned {
+                val windowBounds = it.boundsInWindow()
+                centerX = windowBounds.size.width / 2f
+                centerY = windowBounds.size.height / 2f
+            }
+            .pointerInteropFilter { event ->
+                touchX = event.x
+                touchY = event.y
+                val angle = -atan2(centerX - touchX, centerY - touchY) * (180 / PI).toFloat()
+
+                when (event.action) {
+                    MotionEvent.ACTION_DOWN,
+                    MotionEvent.ACTION_MOVE -> {
+                        if (angle !in -limitingAngle..limitingAngle) {
+                            val fixedAngle = if (angle in -180f..-limitingAngle) {
+                                360f + angle
+                            } else {
+                                angle
+                            }
+                            rotation = fixedAngle
+
+                            val percent = (fixedAngle - limitingAngle) / (360f - 2 * limitingAngle)
+                            onValueChanged(percent)
+                            true
+                        } else false
+                    }
+                    else -> false
+                }
+
+            }
+            .rotate(rotation)
+
+    )
+
+}
 
